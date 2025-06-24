@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarkari Results - Government Jobs, Results, Admit Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e53935;
+            --secondary: #f44336;
+            --dark: #b71c1c;
+            --light: #ffcdd2;
+            --text: #333;
+            --bg: #f5f5f5;
+            --card: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 10px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            background: white;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .search-box {
+            display: flex;
+            width: 40%;
+        }
+
+        .search-box input {
+            padding: 12px 20px;
+            border: none;
+            width: 100%;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--secondary);
+            padding: 0 5%;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .nav-menu li a:hover, .nav-menu li a.active {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li a i {
+            margin-right: 8px;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            padding: 20px 5%;
+            gap: 20px;
+        }
+
+        main {
+            flex: 3;
+        }
+
+        aside {
+            flex: 1;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: var(--dark);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2 i {
+            margin-right: 10px;
+        }
+
+        .notification {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            align-items: flex-start;
+        }
+
+        .notification:last-child {
+            border-bottom: none;
+        }
+
+        .notification-icon {
+            background: var(--light);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .notification-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .notification-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .notification-content .date {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e0f7fa;
+            color: #006064;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #e53935, #f44336);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-links li {
+            border-bottom: 1px dashed #eee;
+        }
+
+        .quick-links li:last-child {
+            border-bottom: none;
+        }
+
+        .quick-links li a {
+            display: block;
+            padding: 10px 0;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .quick-links li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .quick-links li a i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links li a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu li a {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h1>Sarkari Results</h1>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search for jobs, exams, results...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-user"></i> Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap"></i> Results</a></li>
+            <li><a href="#"><i class="fas fa-id-card"></i> Admit Cards</a></li>
+            <li><a href="#"><i class="fas fa-book"></i> Answer Keys</a></li>
+            <li><a href="#"><i class="fas fa-briefcase"></i> Latest Jobs</a></li>
+            <li><a href="#"><i class="fas fa-clipboard-list"></i> Syllabus</a></li>
+            <li><a href="#"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main>
+            <div class="card">
+                <h2><i class="fas fa-bell"></i> Latest Notifications</h2>
+                
+                <div class="notification">
+                    <div class="notification-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>SSC CGL 2023 Tier 1 Result Declared</h3>
+                        <p>Staff Selection Commission has declared the Combined Graduate Level Examination 2023 Tier 1 results.</p>
+                        <div class="date">Published: 25 June 2025</div>
+                        <a href="#" class="btn">View Result</a>
+                        <span class="tag">SSC</span>
+                        <span class="tag">Result</span>
+                    </div>
+                </div>
+                
+                <div class="notification">
+                    <div class="notification-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>IBPS PO XII Recruitment 2025</h3>
+                        <p>Institute of Banking Personnel Selection has released 4125 vacancies for Probationary Officers.</p>
+                        <div class="date">Published: 24 June 2025</div>
+                        <a href="#" class="btn">Apply Now</a>
+                        <a href="#" class="btn btn-outline btn-sm">Notification PDF</a>
+                        <span class="tag">Banking</span>
+                        <span class="tag">Recruitment</span>
+                    </div>
+                </div>
+                
+                <div class="notification">
+                    <div class="notification-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>UPSC Combined Medical Services Examination 2025</h3>
+                        <p>Union Public Service Commission has released the notification for CMS Examination 2025.</p>
+                        <div class="date">Published: 23 June 2025</div>
+                        <a href="#" class="btn">Download Notification</a>
+                        <span class="tag">UPSC</span>
+                        <span class="tag">Medical</span>
+                    </div>
+                </div>
+                
+                <div class="notification">
+                    <div class="notification-icon">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>Railway Group D Phase IV Admit Card</h3>
+                        <p>Railway Recruitment Board has released admit cards for Group D Phase IV examination.</p>
+                        <div class="date">Published: 22 June 2025</div>
+                        <a href="#" class="btn">Download Admit Card</a>
+                        <span class="tag">Railway</span>
+                        <span class="tag">Admit Card</span>
+                    </div>
+                </div>
+                
+                <div class="notification">
+                    <div class="notification-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h3>UPPSC Review Officer Answer Key 2025</h3>
+                        <p>Uttar Pradesh Public Service Commission has released the answer key for Review Officer exam.</p>
+                        <div class="date">Published: 21 June 2025</div>
+                        <a href="#" class="btn">View Answer Key</a>
+                        <a href="#" class="btn btn-outline btn-sm">Challenge Key</a>
+                        <span class="tag">State PSC</span>
+                        <span class="tag">Answer Key</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-chart-line"></i> Job Statistics</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="number">12,586</div>
+                        <div class="label">Current Job Openings</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="number">8,942</div>
+                        <div class="label">Results Declared</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-id-card"></i>
+                        <div class="number">5,673</div>
+                        <div class="label">Admit Cards</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <aside>
+            <div class="card">
+                <h2><i class="fas fa-bolt"></i> Quick Links</h2>
+                <ul class="quick-links">
+                    <li><a href="#"><i class="fas fa-link"></i> SSC Official Website</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> UPSC Online Portal</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Railway Recruitment</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Banking Jobs</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> State Govt Jobs</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Teaching Jobs</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Police Recruitment</a></li>
+                    <li><a href="#"><i class="fas fa-link"></i> Defence Jobs</a></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> Important Notice</h2>
+                <div class="notification">
+                    <div class="notification-content">
+                        <p><strong>Beware of Fake Job Notifications:</strong> Sarkari Results will never ask for money for job applications. Official government jobs are always free to apply.</p>
+                        <a href="#" class="btn btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-calendar-alt"></i> Upcoming Exams</h2>
+                <ul class="quick-links">
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> IBPS Clerk Prelims - 15 July 2025</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> SSC CHSL Tier 1 - 22 July 2025</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> UPSC CDS II - 5 Aug 2025</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> RRB NTPC CBT 2 - 12 Aug 2025</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Sarkari Results</h3>
+                <p>Sarkari Results is India's most trusted government job portal providing latest notifications for SSC, Banking, Railway, UPSC, State PSC, and Defence jobs.</p>
+                <p>We provide timely updates for Results, Admit Cards, Answer Keys, and Syllabus.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Popular Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">SSC Jobs</a></li>
+                    <li><a href="#">Banking Jobs</a></li>
+                    <li><a href="#">Railway Jobs</a></li>
+                    <li><a href="#">Teaching Jobs</a></li>
+                    <li><a href="#">UPSC Jobs</a></li>
+                    <li><a href="#">State Government Jobs</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Latest Jobs</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Admit Cards</a></li>
+                    <li><a href="#">Answer Keys</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> info@sarkariresults.com</li>
+                    <li><i class="fas fa-phone"></i> +91 11 22334455</li>
+                    <li><i class="fas fa-map-marker-alt"></i> New Delhi, India - 110001</li>
+                </ul>
+                <div style="margin-top: 15px;">
+                    <a href="#" style="color: #fff; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: #fff; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: #fff; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Sarkari Results. All Rights Reserved. | Designed with ❤️ for Job Seekers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for active link highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Simulate live data updates
+            setInterval(() => {
+                const liveIndicator = document.createElement('div');
+                liveIndicator.style.position = 'fixed';
+                liveIndicator.style.bottom = '20px';
+                liveIndicator.style.right = '20px';
+                liveIndicator.style.backgroundColor = '#4CAF50';
+                liveIndicator.style.color = 'white';
+                liveIndicator.style.padding = '10px 15px';
+                liveIndicator.style.borderRadius = '4px';
+                liveIndicator.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+                liveIndicator.style.zIndex = '1000';
+                liveIndicator.innerHTML = '<i class="fas fa-sync"></i> Live Updates Active';
+                
+                document.body.appendChild(liveIndicator);
+                
+                setTimeout(() => {
+                    document.body.removeChild(liveIndicator);
+                }, 3000);
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
